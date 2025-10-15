@@ -1,47 +1,37 @@
 package work.aljazroglic.kino
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import work.aljazroglic.kino.ui.theme.KinoTheme
+import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import work.aljazroglic.kino.databinding.ActivityMainBinding
+import kotlin.system.exitProcess
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+    private val binding: ActivityMainBinding by lazy {
+        ActivityMainBinding.inflate(layoutInflater)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            KinoTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        val view = binding.root
+
+        binding.infoButton.setOnClickListener {
+            Log.i("UPORA", "Not implemented")
         }
-    }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+        binding.aboutButton.setOnClickListener {
+            Log.i("UPORA", "Not implemented")
+        }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    KinoTheme {
-        Greeting("Android")
+        binding.addButton.setOnClickListener {
+            Log.i("UPORA", "Not implemented")
+        }
+
+        binding.exitButton.setOnClickListener {
+            finishAffinity()
+            exitProcess(0)
+        }
+
+        setContentView(view)
     }
 }
