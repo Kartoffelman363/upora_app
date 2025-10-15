@@ -10,10 +10,10 @@ class Viewing(val hall: Hall, val movie: Movie, val ticketPrice: Double, val vie
             return _filledCapacity
         }
         set(value) {
-            if (value < 0 || value > hall.capacity) {
-                throw IllegalArgumentException("Value $value out of range (0, ${hall.capacity})")
-            } else {
+            if ((0..hall.capacity).contains(value)) {
                 _filledCapacity = value
+            } else {
+                throw NumberOutOfRangeException("Filled capacity $value out of range (0, ${hall.capacity})")
             }
         }
 
@@ -22,7 +22,7 @@ class Viewing(val hall: Hall, val movie: Movie, val ticketPrice: Double, val vie
     }
 
     override fun compareTo(other: Viewing): Int {
-        return this.viewingDate.compareTo(other.viewingDate);
+        return this.viewingDate.compareTo(other.viewingDate)
     }
 
     companion object {

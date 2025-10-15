@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "Kino"
 include(":app")
 include(":app:kinolib")
+include(":kinolib")
