@@ -1,37 +1,67 @@
 package work.aljazroglic.kino
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import work.aljazroglic.kino.databinding.ActivityMainBinding
-import kotlin.system.exitProcess
+import work.aljazroglic.kinolib.Movie
+import work.aljazroglic.kinolib.RatedMovie
+import work.aljazroglic.kinolib.Theatre
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var theatre: Theatre
+
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        theatre = Theatre.generateRandom()
+
         super.onCreate(savedInstanceState)
-        val view = binding.root
 
-        binding.infoButton.setOnClickListener {
-            Log.i("UPORA", "Not implemented")
+        binding.buttonInfo.setOnClickListener {
+            Log.i("UPORA", "Movies (${theatre.movies.count()})")
+            Log.i("UPORA", "${theatre.movies}")
         }
 
-        binding.aboutButton.setOnClickListener {
-            Log.i("UPORA", "Not implemented")
+        binding.buttonAbout.setOnClickListener {
+            val aboutIntent = Intent(this, AboutActivity::class.java)
+            startActivity(aboutIntent)
         }
 
-        binding.addButton.setOnClickListener {
-            Log.i("UPORA", "Not implemented")
+        binding.buttonAddMovie.setOnClickListener { addMovieOnClickListener() }
+
+        binding.buttonExit.setOnClickListener {
+            finish()
         }
 
-        binding.exitButton.setOnClickListener {
-            finishAffinity()
-            exitProcess(0)
-        }
+        setContentView(binding.root)
+    }
 
-        setContentView(view)
+    val addMovieCallback = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val data = result.data
+            if (data == null) return@registerForActivityResult
+            val name = data.getStringExtra(AddMovieActivity.EXTRA_MOVIE_NAME)
+            val rating = data.getStringExtra(AddMovieActivity.EXTRA_MOVIE_RATING)?.toIntOrNull()
+            if (name == null) return@registerForActivityResult
+            theatre.movies = theatre.movies + if (rating == null) {
+                Movie(name)
+            } else {
+                RatedMovie(name, rating)
+            }
+        }
+    }
+
+    fun addMovieOnClickListener() {
+        if (theatre.halls.isEmpty()) {
+            Log.e("UPORA", "Cannot start activity AddViewingActivity without halls")
+            return
+        }
+        val addIntent = Intent(this, AddMovieActivity::class.java)
+        addMovieCallback.launch(addIntent)
     }
 }

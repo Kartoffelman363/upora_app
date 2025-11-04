@@ -8,29 +8,29 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/infoButton"
+        android:id="@+id/buttonInfo"
         android:text="@string/info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/aboutButton"
+        app:layout_constraintBottom_toTopOf="@id/buttonAbout"
         android:layout_marginBottom="@dimen/marginOne"/>
 
     <Button
-        android:id="@+id/aboutButton"
+        android:id="@+id/buttonAbout"
         android:text="@string/about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/addButton"
+        app:layout_constraintBottom_toTopOf="@id/buttonAddMovie"
         android:layout_marginBottom="@dimen/marginOne"/>
 
     <Button
-        android:id="@+id/addButton"
-        android:text="@string/add"
+        android:id="@+id/buttonAddMovie"
+        android:text="@string/add_viewing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +39,7 @@
         android:layout_marginBottom="@dimen/marginOne"/>
 
     <Button
-        android:id="@+id/exitButton"
+        android:id="@+id/buttonExit"
         android:text="@string/exit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

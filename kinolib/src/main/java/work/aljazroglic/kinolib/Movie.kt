@@ -9,18 +9,20 @@ open class Movie (val name: String) {
     }
 
     companion object {
-        fun generateRandom(faker: Faker): Movie {
-            return Movie(faker.movie.unique.title())
+        fun generateRandom(faker: Faker? = null): Movie {
+            val fakerLoc = faker ?: Faker()
+            return Movie(fakerLoc.movie.unique.title())
         }
 
-        fun generateRandom(faker: Faker, n: Int): List<Movie> {
+        fun generateRandom(faker: Faker? = null, n: Int): List<Movie> {
+            val fakerLoc = faker ?: Faker()
             return List(n) {
                 return List(100) { i ->
                     if (Random.nextBoolean()) {
-                        RatedMovie.generateRandom(faker)
+                        RatedMovie.generateRandom(fakerLoc)
                     }
                     else {
-                        generateRandom(faker)
+                        generateRandom(fakerLoc)
                     }
                 }
             }

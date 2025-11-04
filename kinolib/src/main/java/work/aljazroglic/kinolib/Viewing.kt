@@ -3,20 +3,7 @@ package work.aljazroglic.kinolib
 import java.util.Date
 import kotlin.random.Random
 
-class Viewing(val hall: Hall, val movie: Movie, val ticketPrice: Double, val viewingDate: Date, filledCapacity: Int) : Comparable<Viewing> {
-    private var _filledCapacity = 0
-    var filledCapacity: Int
-        get() {
-            return _filledCapacity
-        }
-        set(value) {
-            if ((0..hall.capacity).contains(value)) {
-                _filledCapacity = value
-            } else {
-                throw NumberOutOfRangeException("Filled capacity $value out of range (0, ${hall.capacity})")
-            }
-        }
-
+class Viewing(val hall: Hall, val movie: Movie, val ticketPrice: Double, val viewingDate: Date, var filledCapacity: Int) : Comparable<Viewing> {
     override fun toString(): String {
         return "$hall; Filled: $filledCapacity; $movie; Viewing price: $ticketPrice; Date: $viewingDate"
     }

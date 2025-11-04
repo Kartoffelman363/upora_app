@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="marginOne">30dp</dimen>
+    <dimen name="marginOne">32dp</dimen>
+    <dimen name="marginQuart">8dp</dimen>
+    <dimen name="marginHalf">16dp</dimen>
 </resources>

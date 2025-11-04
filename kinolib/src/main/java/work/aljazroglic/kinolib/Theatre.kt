@@ -2,7 +2,7 @@ package work.aljazroglic.kinolib
 
 import io.github.serpro69.kfaker.Faker
 
-class Theatre (val halls: List<Hall> = emptyList(), val movies: List<Movie>, val viewings: List<Viewing>) {
+class Theatre (val halls: List<Hall> = emptyList(), var movies: List<Movie>, val viewings: List<Viewing>) {
     override fun toString(): String {
         return "Viewings:\n\t${viewings.joinToString("\n\t")}"
     }
@@ -41,17 +41,19 @@ class Theatre (val halls: List<Hall> = emptyList(), val movies: List<Movie>, val
     }
 
     companion object {
-        fun generateRandom(faker: Faker, movies: List<Movie>? = null, halls: List<Hall>? = null, viewings: List<Viewing>? = null): Theatre {
-            val moviesLoc = movies ?: Movie.generateRandom(faker, 100)
+        fun generateRandom(faker: Faker? = null, movies: List<Movie>? = null, halls: List<Hall>? = null, viewings: List<Viewing>? = null): Theatre {
+            val fakerLoc = faker ?: Faker()
+            val moviesLoc = movies ?: Movie.generateRandom(fakerLoc, 100)
             moviesLoc.plus(Movie("Star Wars"))
-            val hallsLoc = halls ?: Hall.generateRandom(faker, 15)
+            val hallsLoc = halls ?: Hall.generateRandom(fakerLoc, 15)
             val viewingsLoc = viewings ?: Viewing.generateViewings(100, hallsLoc, moviesLoc)
             return Theatre(hallsLoc, moviesLoc, viewingsLoc)
         }
 
-        fun generateRandom(faker: Faker, n: Int, movies: List<Movie>? = null, halls: List<Hall>? = null, viewings: List<Viewing>? = null): List<Theatre> {
+        fun generateRandom(n: Int, faker: Faker? = null, movies: List<Movie>? = null, halls: List<Hall>? = null, viewings: List<Viewing>? = null): List<Theatre> {
+            val fakerLoc = faker ?: Faker()
             return List(n) {
-                generateRandom(faker, movies, halls, viewings)
+                generateRandom(fakerLoc, movies, halls, viewings)
             }
         }
     }

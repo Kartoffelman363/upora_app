@@ -1,6 +1,7 @@
 plugins {
     id("java-library")
     alias(libs.plugins.jetbrains.kotlin.jvm)
+    kotlin("plugin.serialization").version("2.2.0")
 }
 java {
     sourceCompatibility = JavaVersion.VERSION_11
@@ -14,4 +15,5 @@ kotlin {
 
 dependencies {
     implementation(libs.kotlin.faker)
+    implementation(libs.kotlinx.serialization.json)
 }

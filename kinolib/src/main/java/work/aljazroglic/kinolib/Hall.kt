@@ -1,7 +1,9 @@
 package work.aljazroglic.kinolib
 
 import io.github.serpro69.kfaker.Faker
+import kotlinx.serialization.Serializable
 
+@Serializable
 class Hall(val capacity: Int, val name: String) : Sizable, Comparable<Hall> {
     override fun toString(): String {
         return "Hall: $name; Capacity: $capacity"
@@ -16,13 +18,15 @@ class Hall(val capacity: Int, val name: String) : Sizable, Comparable<Hall> {
     }
 
     companion object {
-        fun generateRandom(faker: Faker): Hall {
-            return Hall((60..120).random(), faker.space.unique.moon())
+        fun generateRandom(faker: Faker? = null): Hall {
+            val fakerLoc = faker ?: Faker()
+            return Hall((60..120).random(), fakerLoc.space.unique.moon())
         }
 
-        fun generateRandom(faker: Faker, n: Int): List<Hall> {
+        fun generateRandom(faker: Faker? = null, n: Int): List<Hall> {
+            val fakerLoc = faker ?: Faker()
             return List(n) {
-                generateRandom(faker)
+                generateRandom(fakerLoc)
             }
         }
     }
