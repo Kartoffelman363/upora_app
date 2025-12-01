@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="marginOne">32dp</dimen>
-    <dimen name="marginQuart">8dp</dimen>
-    <dimen name="marginHalf">16dp</dimen>
+    <dimen name="dTriple">96dp</dimen>
+    <dimen name="dDouble">64dp</dimen>
+    <dimen name="dSevenQuarters">56dp</dimen>
+    <dimen name="dThreeHalves">48dp</dimen>
+    <dimen name="dOne">32dp</dimen>
+    <dimen name="dHalf">16dp</dimen>
+    <dimen name="dQuart">8dp</dimen>
 </resources>

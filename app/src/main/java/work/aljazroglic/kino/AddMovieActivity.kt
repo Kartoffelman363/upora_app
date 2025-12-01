@@ -32,6 +32,9 @@ class AddMovieActivity : AppCompatActivity() {
         binding.buttonCancel.setOnClickListener {
             finish()
         }
+
+        binding.editTextMovieName.setText("")
+        binding.editTextNumberRating.setText("")
     }
 
     companion object {
