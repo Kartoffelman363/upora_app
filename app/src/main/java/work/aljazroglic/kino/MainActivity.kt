@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding.buttonInfo.setOnClickListener {
-            Log.i("UPORA", "Movies (${theatre.movies.count()})")
+            Log.i("UPORA", getString(R.string.movies_log, theatre.movies.count()))
             Log.i("UPORA", "${theatre.movies}")
         }
 
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
 
     fun addMovieOnClickListener() {
         if (theatre.halls.isEmpty()) {
-            Log.e("UPORA", "Cannot start activity AddViewingActivity without halls")
+            Log.e("UPORA", getString(R.string.cannot_start_activity_log))
             return
         }
         val addIntent = Intent(this, AddMovieActivity::class.java)

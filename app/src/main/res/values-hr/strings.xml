@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Kino</string>
+    <string name="info">Info</string>
+    <string name="about">O aplikaciji</string>
+    <string name="add">Dodaj</string>
+    <string name="exit">Izlaz</string>
+    <string name="version">Verzija</string>
+    <string name="about_text">Aplikacija za rezervaciju i praćenje rezervacija za kina</string>
+    <string name="movie_theatre">Kino</string>
+    <string name="add_viewing">dodajte pregled</string>
+    <string name="date">Datum</string>
+    <string name="movie">Film</string>
+    <string name="price">Cijena</string>
+    <string name="hall">Dvorana</string>
+    <string name="name">Naslov</string>
+    <string name="rating">Ocjena</string>
+    <string name="return_button">Gumb za povratak</string>
+    <string name="movies_log">Filmi (%1$d)</string>
+</resources>
