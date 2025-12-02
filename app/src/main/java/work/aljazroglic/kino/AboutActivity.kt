@@ -28,7 +28,7 @@ class AboutActivity : AppCompatActivity() {
             finish()
         }
 
-        binding.textViewUserIDValue.text = app.userUuid.toString()
+        binding.textViewUserIDValue.text = app.getUserUUID() ?: ""
 
         setContentView(binding.root)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->

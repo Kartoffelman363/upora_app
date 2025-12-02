@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import kotlinx.serialization.json.Json
 import work.aljazroglic.kino.databinding.ActivityMainBinding
 import kotlin.uuid.ExperimentalUuidApi
 
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         binding.buttonInfo.setOnClickListener {
             Log.i("UPORA", getString(R.string.movies_log, theatre.movies.count()))
             Log.i("UPORA", "${theatre.movies}")
+            Log.i("UPORA", Json.encodeToString(app.theatre))
         }
 
         binding.buttonAbout.setOnClickListener {
@@ -40,6 +42,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContentView(binding.root)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        app.writeTheatreToFile()
     }
 
     fun addMovieOnClickListener() {

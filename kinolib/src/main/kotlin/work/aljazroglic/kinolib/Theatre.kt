@@ -3,8 +3,10 @@
 package work.aljazroglic.kinolib
 
 import io.github.serpro69.kfaker.Faker
+import kotlinx.serialization.Serializable
 import kotlin.uuid.ExperimentalUuidApi
 
+@Serializable
 class Theatre (val halls: List<Hall> = emptyList(), var movies: List<MovieBase>, val viewings: List<Viewing>) {
     override fun toString(): String {
         return "Viewings:\n\t${viewings.joinToString("\n\t")}"
