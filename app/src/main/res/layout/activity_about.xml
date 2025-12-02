@@ -97,4 +97,28 @@
         android:background="@drawable/round_primary"
         app:tint="@color/md_theme_onPrimary"
         app:srcCompat="@drawable/chevron_backward_24px" />
+
+    <TextView
+        android:id="@+id/textViewUserID"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dOne"
+        android:layout_marginTop="@dimen/dOne"
+        android:layout_marginEnd="@dimen/dOne"
+        android:text="@string/user_id"
+        app:layout_constraintEnd_toStartOf="@+id/textViewUserIDValue"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewAboutText" />
+
+    <TextView
+        android:id="@+id/textViewUserIDValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/dOne"
+        android:text=""
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewUserID"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textViewUserID" />
 </androidx.constraintlayout.widget.ConstraintLayout>

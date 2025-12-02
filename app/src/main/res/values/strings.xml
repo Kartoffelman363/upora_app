@@ -20,4 +20,5 @@
     <string name="return_button">Return button</string>
     <string name="movies_log">Movies (%1$d)</string>
     <string name="cannot_start_activity_log" translatable="false">Cannot start activity AddViewingActivity without halls</string>
+    <string name="user_id">User ID</string>
 </resources>

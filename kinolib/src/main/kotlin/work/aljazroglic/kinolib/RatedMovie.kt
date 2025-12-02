@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 class RatedMovie(override val name: String, val rating: Int): MovieBase(){
     override fun toString(): String {
-        return "${super.toString()} rated $rating/10"
+        return "Movie: $name rated $rating/10"
     }
 
     companion object {
