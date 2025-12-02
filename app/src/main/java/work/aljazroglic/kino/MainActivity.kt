@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalUuidApi::class)
+
 package work.aljazroglic.kino
 
 import android.content.Intent
@@ -9,6 +11,7 @@ import work.aljazroglic.kino.databinding.ActivityMainBinding
 import work.aljazroglic.kinolib.Movie
 import work.aljazroglic.kinolib.RatedMovie
 import work.aljazroglic.kinolib.Theatre
+import kotlin.uuid.ExperimentalUuidApi
 
 class MainActivity : AppCompatActivity() {
     private lateinit var theatre: Theatre

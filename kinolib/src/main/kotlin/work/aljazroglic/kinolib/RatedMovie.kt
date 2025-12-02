@@ -1,8 +1,10 @@
 package work.aljazroglic.kinolib
 
 import io.github.serpro69.kfaker.Faker
+import kotlinx.serialization.Serializable
 
-class RatedMovie(name: String, val rating: Int): Movie(name){
+@Serializable
+class RatedMovie(override val name: String, val rating: Int): MovieBase(){
     override fun toString(): String {
         return "${super.toString()} rated $rating/10"
     }

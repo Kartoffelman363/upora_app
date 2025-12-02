@@ -1,22 +1,25 @@
+@file:OptIn(ExperimentalUuidApi::class)
+
 package work.aljazroglic.kinolib
 
 import io.github.serpro69.kfaker.Faker
+import kotlin.uuid.ExperimentalUuidApi
 
-class Theatre (val halls: List<Hall> = emptyList(), var movies: List<Movie>, val viewings: List<Viewing>) {
+class Theatre (val halls: List<Hall> = emptyList(), var movies: List<MovieBase>, val viewings: List<Viewing>) {
     override fun toString(): String {
         return "Viewings:\n\t${viewings.joinToString("\n\t")}"
     }
 
-    fun findMoviesByName(name: String): List<Movie>? {
-        return this.movies.filter { movie -> movie.name.contains(name) } as List<Movie>?
+    fun findMoviesByName(name: String): List<MovieBase>? {
+        return this.movies.filter { movie -> movie.name.contains(name) } as List<MovieBase>?
     }
 
     fun findMoviesByNameCount(name: String): Int {
         return findMoviesByName(name)?.size ?: 0
     }
 
-    fun filterMovies(name: String): List<Movie>? {
-        return this.movies.filter { movie -> !movie.name.contains(name) } as List<Movie>?
+    fun filterMovies(name: String): List<MovieBase>? {
+        return this.movies.filter { movie -> !movie.name.contains(name) } as List<MovieBase>?
     }
 
     fun averageOccupationOfViewings(): Double {
@@ -41,7 +44,7 @@ class Theatre (val halls: List<Hall> = emptyList(), var movies: List<Movie>, val
     }
 
     companion object {
-        fun generateRandom(faker: Faker? = null, movies: List<Movie>? = null, halls: List<Hall>? = null, viewings: List<Viewing>? = null): Theatre {
+        fun generateRandom(faker: Faker? = null, movies: List<MovieBase>? = null, halls: List<Hall>? = null, viewings: List<Viewing>? = null): Theatre {
             val fakerLoc = faker ?: Faker()
             val moviesLoc = movies ?: Movie.generateRandom(fakerLoc, 100)
             moviesLoc.plus(Movie("Star Wars"))
@@ -50,7 +53,7 @@ class Theatre (val halls: List<Hall> = emptyList(), var movies: List<Movie>, val
             return Theatre(hallsLoc, moviesLoc, viewingsLoc)
         }
 
-        fun generateRandom(n: Int, faker: Faker? = null, movies: List<Movie>? = null, halls: List<Hall>? = null, viewings: List<Viewing>? = null): List<Theatre> {
+        fun generateRandom(n: Int, faker: Faker? = null, movies: List<MovieBase>? = null, halls: List<Hall>? = null, viewings: List<Viewing>? = null): List<Theatre> {
             val fakerLoc = faker ?: Faker()
             return List(n) {
                 generateRandom(fakerLoc, movies, halls, viewings)

@@ -1,10 +1,14 @@
+@file:OptIn(ExperimentalUuidApi::class)
+
 package work.aljazroglic.kinolib
 
 import io.github.serpro69.kfaker.Faker
 import kotlinx.serialization.Serializable
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
 @Serializable
-class Hall(val capacity: Int, val name: String) : Sizable, Comparable<Hall> {
+class Hall(val capacity: Int, val name: String, val uuid: Uuid = Uuid.random()) : Sizable, Comparable<Hall> {
     override fun toString(): String {
         return "Hall: $name; Capacity: $capacity"
     }

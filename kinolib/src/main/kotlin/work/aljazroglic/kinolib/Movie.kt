@@ -1,9 +1,15 @@
+@file:OptIn(ExperimentalUuidApi::class)
+
 package work.aljazroglic.kinolib
 
 import io.github.serpro69.kfaker.Faker
+import kotlinx.serialization.Serializable
 import kotlin.random.Random
+import kotlin.uuid.ExperimentalUuidApi
+import kotlin.uuid.Uuid
 
-open class Movie (val name: String) {
+@Serializable
+open class Movie (override val name: String, val uuid: Uuid = Uuid.random()): MovieBase() {
     override fun toString(): String {
         return "Movie: $name"
     }
@@ -14,7 +20,7 @@ open class Movie (val name: String) {
             return Movie(fakerLoc.movie.unique.title())
         }
 
-        fun generateRandom(faker: Faker? = null, n: Int): List<Movie> {
+        fun generateRandom(faker: Faker? = null, n: Int): List<MovieBase> {
             val fakerLoc = faker ?: Faker()
             return List(n) {
                 return List(100) { i ->
