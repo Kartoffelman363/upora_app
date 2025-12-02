@@ -5,6 +5,10 @@ package work.aljazroglic.kino
 import android.app.Application
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.ProcessLifecycleOwner
 import kotlinx.serialization.json.Json
 import work.aljazroglic.kinolib.Theatre
 import java.io.File
@@ -12,7 +16,7 @@ import java.lang.Exception
 import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
-class MyApplication: Application() {
+class MyApplication: Application(), LifecycleObserver {
     lateinit var theatre: Theatre
     private lateinit var theatreFile: File
     lateinit var sharedPreferences: SharedPreferences
@@ -25,6 +29,24 @@ class MyApplication: Application() {
         }
         theatreFile = File(filesDir, THEATRE_FILE_NAME)
         theatre = readTheatreFromFile()
+
+        val lifecycleEventObserver = LifecycleEventObserver { _, event ->
+            when (event) {
+                Lifecycle.Event.ON_STOP -> {
+                    bumpStat("app_to_background")
+                }
+                else -> {}
+            }
+        }
+
+        ProcessLifecycleOwner.get().lifecycle.addObserver(lifecycleEventObserver)
+    }
+
+    fun bumpStat(key: String) {
+        val onStartCount = sharedPreferences.getInt(key, 0) + 1
+        sharedPreferences.edit {
+            putInt(key, onStartCount)
+        }
     }
 
     fun readTheatreFromFile(): Theatre {

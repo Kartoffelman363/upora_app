@@ -3,15 +3,12 @@
 package work.aljazroglic.kino
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import work.aljazroglic.kino.databinding.ActivityAddMovieBinding
 import work.aljazroglic.kinolib.RatedMovie
 import work.aljazroglic.kinolib.Movie
 import kotlin.uuid.ExperimentalUuidApi
 
-class AddMovieActivity : AppCompatActivity() {
-    lateinit var app: MyApplication
-
+class AddMovieActivity : BaseActivity() {
     private val binding: ActivityAddMovieBinding by lazy {
         ActivityAddMovieBinding.inflate(layoutInflater)
     }

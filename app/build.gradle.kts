@@ -58,6 +58,7 @@ dependencies {
     implementation(project(":kinolib"))
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.compose.ui.text.google.fonts)
+    implementation("androidx.lifecycle:lifecycle-process:2.10.0")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
