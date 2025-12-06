@@ -7,4 +7,6 @@
     <dimen name="dOne">32dp</dimen>
     <dimen name="dHalf">16dp</dimen>
     <dimen name="dQuart">8dp</dimen>
+    <dimen name="text_primary">20sp</dimen>
+    <dimen name="text_secondary">16sp</dimen>
 </resources>
