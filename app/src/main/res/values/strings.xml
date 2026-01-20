@@ -22,5 +22,7 @@
     <string name="cannot_start_activity_log" translatable="false">Cannot start activity AddViewingActivity without halls</string>
     <string name="user_id">User ID</string>
     <string name="thumbnail">Thumbnail</string>
-    <string name="out_of_ten_rating" translatable="false">%1$d/10</string>
+    <string name="open_movies_overview">Open movies overview</string>
+    <string name="movies">Movies</string>
+    <string name="rated_movie_out_of_ten" translatable="false">%1$d/10</string>
 </resources>

@@ -54,7 +54,7 @@ class MyApplication: Application(), LifecycleObserver {
             val theatreJsonString = theatreFile.readText()
             return Json.decodeFromString(theatreJsonString)
         } catch(_: Exception) {
-            return Theatre.generateRandom(movies = emptyList())
+            return Theatre.generateRandom()
         }
     }
 

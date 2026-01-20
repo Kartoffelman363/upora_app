@@ -28,21 +28,19 @@
         android:layout_height="@dimen/dSevenQuarters"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/buttonAddMovie"
+        app:layout_constraintBottom_toTopOf="@id/buttonOpenMovieOverview"
         android:layout_marginBottom="@dimen/dOne"/>
 
-    <ImageButton
-        android:id="@+id/buttonAddMovie"
-        android:contentDescription="@string/add_viewing"
-        android:src="@drawable/add_24px"
-        android:layout_width="@dimen/dSevenQuarters"
+    <Button
+        android:id="@+id/buttonOpenMovieOverview"
+        android:contentDescription="@string/open_movies_overview"
+        android:text="@string/movies"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/dSevenQuarters"
-        android:background="@drawable/round_primary"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="@dimen/dOne"
-        app:tint="@color/md_theme_onPrimary" />
+        android:layout_marginBottom="@dimen/dOne"/>
 
     <Button
         android:id="@+id/buttonExit"

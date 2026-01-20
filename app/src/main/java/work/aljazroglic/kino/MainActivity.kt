@@ -16,8 +16,6 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        app = application as MyApplication
-
         val theatre = app.theatre
 
         binding.buttonInfo.setOnClickListener {
@@ -31,7 +29,10 @@ class MainActivity : BaseActivity() {
             startActivity(aboutIntent)
         }
 
-        binding.buttonAddMovie.setOnClickListener { addMovieOnClickListener() }
+        binding.buttonOpenMovieOverview.setOnClickListener {
+            val movieOverviewIntent = Intent(this, MovieOverviewActivity::class.java)
+            startActivity(movieOverviewIntent)
+        }
 
         binding.buttonExit.setOnClickListener {
             finish()
@@ -43,14 +44,5 @@ class MainActivity : BaseActivity() {
     override fun onStop() {
         super.onStop()
         app.writeTheatreToFile()
-    }
-
-    fun addMovieOnClickListener() {
-        if (app.theatre.halls.isEmpty()) {
-            Log.e("UPORA", getString(R.string.cannot_start_activity_log))
-            return
-        }
-        val addIntent = Intent(this, AddMovieActivity::class.java)
-        startActivity(addIntent)
     }
 }

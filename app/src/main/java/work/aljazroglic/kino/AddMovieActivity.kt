@@ -2,6 +2,7 @@
 
 package work.aljazroglic.kino
 
+import android.content.Intent
 import android.os.Bundle
 import work.aljazroglic.kino.databinding.ActivityAddMovieBinding
 import work.aljazroglic.kinolib.RatedMovie
@@ -20,6 +21,11 @@ class AddMovieActivity : BaseActivity() {
 
         setContentView(binding.root)
 
+        val movieId = intent.getStringExtra(MOVIE_ID)
+        var movie =
+            if(movieId != null) app.theatre.movies.find { m -> m.id.toString() == movieId }
+            else null
+
         binding.buttonAdd.setOnClickListener {
             val theatre = app.theatre
             val name = binding.editTextMovieName.text.toString()
@@ -27,12 +33,29 @@ class AddMovieActivity : BaseActivity() {
             if (name.isBlank()) {
                 return@setOnClickListener
             }
-            if (rating != null && (rating >= 0 && rating <= 10)) {
-                theatre.movies += RatedMovie(name, rating)
+            if (movie != null) {
+                movie!!.name = name
+                when(movie) {
+                    is RatedMovie -> (movie as RatedMovie).rating = rating ?: 0
+                    else -> {}
+                }
             }
             else {
-                theatre.movies += Movie(name)
+                if (rating != null && (rating >= 0 && rating <= 10)) {
+                    val mov = RatedMovie(name, rating = rating)
+                    theatre.movies += mov
+                    movie = mov
+                }
+                else {
+                    val mov = Movie(name)
+                    theatre.movies += mov
+                    movie = mov
+                }
             }
+            val resultIntent = Intent()
+            resultIntent.putExtra(MOVIE_ID, movie.id.toString())
+
+            setResult(RESULT_OK, resultIntent)
             finish()
         }
 
@@ -40,7 +63,14 @@ class AddMovieActivity : BaseActivity() {
             finish()
         }
 
-        binding.editTextMovieName.setText("")
-        binding.editTextNumberRating.setText("")
+        binding.editTextMovieName.setText(movie?.name ?: "")
+        when(movie) {
+            is RatedMovie -> binding.editTextNumberRating.setText((movie as RatedMovie).rating)
+            else -> binding.editTextNumberRating.setText("")
+        }
+    }
+
+    companion object {
+        const val MOVIE_ID = "movie_id"
     }
 }

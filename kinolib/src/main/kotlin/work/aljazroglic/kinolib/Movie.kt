@@ -9,7 +9,7 @@ import kotlin.uuid.ExperimentalUuidApi
 import kotlin.uuid.Uuid
 
 @Serializable
-open class Movie (override val name: String, val uuid: Uuid = Uuid.random()): MovieBase() {
+open class Movie (override var name: String, override val id: Uuid = Uuid.random()): MovieBase() {
     override fun toString(): String {
         return "Movie: $name"
     }
@@ -20,10 +20,10 @@ open class Movie (override val name: String, val uuid: Uuid = Uuid.random()): Mo
             return Movie(fakerLoc.movie.unique.title())
         }
 
-        fun generateRandom(faker: Faker? = null, n: Int): List<MovieBase> {
+        fun generateRandom(faker: Faker? = null, n: Int): MutableList<MovieBase> {
             val fakerLoc = faker ?: Faker()
-            return List(n) {
-                return List(100) { i ->
+            return MutableList(n) {
+                return MutableList(100) { i ->
                     if (Random.nextBoolean()) {
                         RatedMovie.generateRandom(fakerLoc)
                     }

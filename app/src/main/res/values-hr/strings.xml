@@ -17,4 +17,8 @@
     <string name="rating">Ocjena</string>
     <string name="return_button">Gumb za povratak</string>
     <string name="movies_log">Filmi (%1$d)</string>
+    <string name="user_id">Uporabniški ID</string>
+    <string name="thumbnail">Slika</string>
+    <string name="open_movies_overview">Otvori pregled filmova</string>
+    <string name="movies">Filmi</string>
 </resources>
